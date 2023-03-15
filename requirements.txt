@@ -7,3 +7,4 @@ plotly==5.11.0
 scikit_learn==1.2.2
 streamlit==1.15.1
 yfinance==0.2.3
+tensorflow==2.11.0
