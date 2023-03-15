@@ -19,6 +19,22 @@ import math
 from sklearn.metrics import mean_squared_error
 import yfinance as yf
 
+st.set_page_config(
+        page_title="Stock Price Prediction System",
+        page_icon="chart_with_upwards_trend",
+        layout="wide",
+    )
+
+st.markdown(
+    """
+    <style>
+    body {
+        background-color: #ADD8E6;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
 
 start = dt.datetime(2015,1,1)
 end = dt.datetime.now()
