@@ -22,7 +22,7 @@ import yfinance as yf
 st.set_page_config(
         page_title="Stock Price Prediction System",
         page_icon="chart_with_upwards_trend",
-        layout="wide",
+        
     )
 
 st.markdown(
