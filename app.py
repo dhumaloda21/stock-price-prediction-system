@@ -25,16 +25,7 @@ st.set_page_config(
         
     )
 
-st.markdown(
-    """
-    <style>
-    * {
-        background-color: #e4edf0;
-    }
-    </style>
-    """,
-    unsafe_allow_html=True
-)
+
 
 start = dt.datetime(2015,1,1)
 end = dt.datetime.now()
