@@ -21,7 +21,7 @@ import yfinance as yf
 
 st.set_page_config(
         page_title="Stock Price Prediction System",
-        page_icon=":chart_with_upwards_trend",
+        page_icon= '📈',
         
     )
 
@@ -29,7 +29,7 @@ st.markdown(
     """
     <style>
     * {
-        background-color: #ADD8E6;
+        background-color: #e4edf0;
     }
     </style>
     """,
