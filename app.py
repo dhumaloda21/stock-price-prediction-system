@@ -111,8 +111,8 @@ test_predict=scaler.inverse_transform(test_predict)
 
 ##ADDED #####################################################################################################
 # You should also inverse-transform y_train and y_test
-y_train_inv = scaler.inverse_transform(y_train.reshape(-1, 1))
-y_test_inv = scaler.inverse_transform(y_test.reshape(-1, 1))
+
+
 ##y_test
 
 
@@ -129,8 +129,8 @@ def calculate_mape(y_true, y_pred):
     return np.mean(np.abs((y_true[mask] - y_pred[mask]) / y_true[mask])) * 100
 
 # Flatten for metrics
-y_true = y_test_inv.flatten()
-y_hat  = test_predict.flatten()
+y_true = test_predict.flatten()
+y_hat  = train_predict.flatten()
 
 # ---- Compute Metrics ----
 rmse = float(np.sqrt(mean_squared_error(y_true, y_hat)))
