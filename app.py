@@ -109,6 +109,54 @@ test_predict=model.predict(X_test)
 train_predict=scaler.inverse_transform(train_predict)
 test_predict=scaler.inverse_transform(test_predict)
 
+##ADDED #####################################################################################################
+# You should also inverse-transform y_train and y_test
+y_train_inv = scaler.inverse_transform(y_train.reshape(-1, 1))
+y_test
+
+
+from sklearn.metrics import mean_squared_error, mean_absolute_error
+
+# ---- Helper: MAPE ----
+def calculate_mape(y_true, y_pred):
+    y_true = np.array(y_true).flatten()
+    y_pred = np.array(y_pred).flatten()
+    # Avoid division by zero
+    mask = y_true != 0
+    if np.sum(mask) == 0:
+        return np.nan
+    return np.mean(np.abs((y_true[mask] - y_pred[mask]) / y_true[mask])) * 100
+
+# Flatten for metrics
+y_true = y_test_inv.flatten()
+y_hat  = test_predict.flatten()
+
+# ---- Compute Metrics ----
+rmse = float(np.sqrt(mean_squared_error(y_true, y_hat)))
+mae  = float(mean_absolute_error(y_true, y_hat))
+mape = float(calculate_mape(y_true, y_hat))
+accuracy_pct = 100 - mape  # interpretive accuracy
+
+# ---- Show in Streamlit ----
+st.subheader("🔎 Test Set Performance")
+col1, col2, col3 = st.columns(3)
+col1.metric("RMSE (₹)", f"{rmse:,.2f}")
+col2.metric("MAE (₹)",  f"{mae:,.2f}")
+col3.metric("Accuracy", f"{accuracy_pct:.2f}%")
+
+# (Optional) Directional accuracy (up/down correctness)
+def directional_accuracy(y_true_arr, y_pred_arr):
+    if len(y_true_arr) < 2: 
+        return np.nan
+    true_diff = np.diff(y_true_arr)
+    pred_diff = np.diff(y_pred_arr)
+    hits = np.sum(np.sign(true_diff) == np.sign(pred_diff))
+    return float(hits / len(true_diff) * 100)
+
+dir_acc = directional_accuracy(y_true, y_hat)
+st.caption(f"Directional Accuracy (up/down)")
+##################################################################################################
+
 
 my_bar = st.progress(0)
 for percent_complete in range(100):
