@@ -112,7 +112,7 @@ test_predict=scaler.inverse_transform(test_predict)
 ##ADDED #####################################################################################################
 # You should also inverse-transform y_train and y_test
 y_train_inv = scaler.inverse_transform(y_train.reshape(-1, 1))
-y_test
+##y_test
 
 
 from sklearn.metrics import mean_squared_error, mean_absolute_error
